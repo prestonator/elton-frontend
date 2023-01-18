@@ -1,0 +1,191 @@
+@keyframes gradient {
+	0% {
+		background-position: 0% 0%;
+	}
+	100% {
+		background-position: 30% 50%;
+	}
+}
+
+.section2 .tabContainer {
+	display: flex;
+	justify-content: center;
+	background: #2220;
+}
+
+/* Tabs */
+
+.tabs {
+	--links-height: 80px;
+	--links-background: linear-gradient(135deg, #e5eaf1 0%, #b9c5d8 100%);
+	--links-overlay: linear-gradient(
+		135deg,
+		#2b2b2b 0%,
+		#4e0000 48%,
+		#2b2b2b 100%
+	);
+	--Sllink-background: linear-gradient(
+		90deg,
+		transparent 70%,
+		rgba(255, 255, 255, 0.2) 100%
+	);
+	width: 100%;
+	min-width: 300px;
+	font-family: Lato, sans-serif;
+}
+.tabs .tabLinks {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: var(--links-height);
+	background: var(--links-background);
+	list-style-type: none;
+	font-size: 1.5vw;
+}
+@media screen and (max-width: 750px) {
+	.tabs .tabLinks {
+		height: calc(var(--links-height) / 2);
+	}
+}
+.tabs .tabLinks li {
+	flex: 1;
+}
+.tabs .tabLinks li .singleLink {
+	all: unset;
+	position: relative;
+	height: var(--links-height);
+	width: 100%;
+	background: var(--Sllink-background);
+	cursor: pointer;
+	overflow: hidden;
+	transition: 0.3s;
+}
+@media screen and (max-width: 750px) {
+	.tabs .tabLinks li .singleLink {
+		height: calc(var(--links-height) / 2);
+		font-size: 12px;
+	}
+}
+.tabs .tabLinks li .singleLink::before {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	background: var(--links-overlay);
+	-webkit-transform: scaleY(0);
+	transform: scaleY(0);
+	-webkit-transform-origin: top;
+	transform-origin: top;
+	transition: 0.3s ease-in-out;
+}
+.tabs .tabLinks li .singleLink .linkText {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0.6;
+	transition: 0.5s;
+}
+.tabs .tabLinks li .singleLink .linkText::before {
+	position: absolute;
+	content: attr(data-text);
+	top: 160%;
+	z-index: -1;
+	font-size: 40px;
+	font-weight: 600;
+	color: white;
+	opacity: 0.1;
+	transition: 1.2s ease-out;
+}
+@media screen and (max-width: 750px) {
+	.tabs .tabLinks li .singleLink .linkText::before {
+		display: none;
+	}
+}
+.tabs .tabLinks li .singleLink:hover::before {
+	-webkit-transform: scaleY(1);
+	transform: scaleY(1);
+}
+.tabs .tabLinks li .singleLink:hover .linkText {
+	color: white;
+	opacity: 1;
+}
+.tabs .tabLinks li .singleLink:hover .linkText::before {
+	-webkit-transform: translateY(-175%);
+	transform: translateY(-175%);
+}
+.tabs .tabLinks li .singleLink.active {
+	-webkit-transform: scaleY(1.4);
+	transform: scaleY(1.4);
+	background: white;
+}
+.tabs .tabLinks li .singleLink.active::before {
+	-webkit-transform: scaleY(0.05);
+	transform: scaleY(0.05);
+}
+.tabs .tabLinks li .singleLink.active .linkText {
+	-webkit-transform: scaleY(0.714);
+	transform: scaleY(0.714);
+}
+.tabs .tabLinks li .singleLink.active .linkText,
+.tabs .tabLinks li .singleLink.active:hover .linkText {
+	background: var(--links-overlay);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	opacity: 1;
+}
+.tabs .tabContent {
+	position: relative;
+	margin-top: 0;
+	padding: 40px 60px;
+	background: white;
+	list-style-type: none;
+	transition: 1s;
+	font-size: 1.15vw;
+}
+.tabs .tabContent::after {
+	position: absolute;
+	content: "";
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background: var(--links-overlay);
+}
+.tabs .tabContent .insideContent {
+	display: none;
+	min-height: 200px;
+	font-weight: 300;
+	line-height: 1.8;
+	opacity: 0;
+	-webkit-transform: translateY(30%);
+	transform: translateY(30%);
+	-webkit-animation: fadeIn 0.6s forwards;
+	animation: fadeIn 0.6s forwards;
+}
+.tabs .tabContent .insideContent.active {
+	display: block;
+}
+
+@-webkit-keyframes fadeIn {
+	to {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeIn {
+	to {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}
