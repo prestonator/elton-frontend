@@ -18,9 +18,7 @@ const BlogPage = ({ posts }) => {
 	const firstHalf = posts.slice(0, half);
 	const secondHalf = posts.slice(half);
 
-	
 
-	console.log(BlogPageHero);
 
 	return (
 		<>
